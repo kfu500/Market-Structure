@@ -119,3 +119,34 @@ original archive/HTML and everything required by the active release.
 Current core verification: 94 Node tests, 34 Python tests, and repository privacy
 checks pass. See [local-computer instructions](local-computer.md); original
 private artifacts and recovery downloads remain external to Git.
+
+## Local setup from original uploads
+
+`Setup-From-Originals.cmd` and `scripts/setup-from-originals.js` provide a separate
+route when cloud artifact downloads are unavailable. The code-only GitHub ZIP
+and the user's own local originals are sufficient. Setup accepts the full HTML
+and database ZIP, or the original HTML ZIP and split database-upload ZIPs. It
+requires Node 24 and the two pinned npm parsers, without Python, WSL or Docker.
+
+Originals remain unchanged. Extraction is bounded and checks ZIP paths, CRCs,
+sizes, source stability and available source-manifest hashes. No uploaded script
+is run. Generated modules must match all reviewed application modules exactly,
+and HTML components and calculation records reconcile to the validated database.
+Empty metric maps with no records are retained in the original HTML; comparison
+does not require nonexistent SQLite rows for those containers. Existing private
+destinations are never overwritten, and failure removes only owned staging.
+
+Both full-original and split-upload routes were reconstructed in the Linux
+environment. Their database and presentation fingerprints match the existing
+validated migration, and source checksums remain unchanged. The rebuilt runtime
+passed all 16 private browser scenarios with no page, console, HTTP or external
+request errors. All eight synthetic browser checks passed. Core verification is
+now **109 Node tests, 34 Python tests and the repository privacy gate**. These
+include corrupt/unsafe archives, rejected source mismatches, rollback, existing
+data preservation, safe CLI error output and Windows directory-sync handling.
+
+The Windows-compatible SQLite reader was exercised against the rebuilt data in
+Linux. Native Windows first-run behavior remains unverified here; its CI job
+includes the new source-archive, setup and importer tests. This route restores
+the portal from original sources; sandbox-only audit evidence remains in the
+separate private backup. The cloud attachment delivery issue remains unresolved.

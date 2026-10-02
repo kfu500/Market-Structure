@@ -6,6 +6,11 @@ Repository code contains reviewed presentation modules, shared calculations, loa
 
 ## Launch the migrated portal
 
+If recovery-file downloads are unavailable and you still have the original HTML
+and database ZIP, follow [Windows setup from originals](docs/setup-from-originals.md).
+Download the code-only branch ZIP from GitHub, extract it, and run
+`Setup-From-Originals.cmd`. It rebuilds private storage locally from your own files.
+
 Use **Node.js 24**. For the prepared Windows package, follow [the local-computer guide](docs/local-computer.md) and double-click `Start-Market-Structure.cmd`; no npm installation, Python, WSL, or Docker is needed for the viewer. Native Windows execution remains unverified in this Linux workspace.
 
 Linux pins the SQLite descriptor through `/proc`; Windows uses a hash-verified private temporary copy and the native Node SQLite reader. The following commands are for the existing Linux development workspace. Install the two pinned development parsers used by code-porting and review checks:

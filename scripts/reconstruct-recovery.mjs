@@ -247,7 +247,7 @@ async function parseZip(handle, size, sourceArchive = false) {
   return entries;
 }
 
-async function inflateEntry(archive, entry, destination, expectedDigest) {
+async function inflateEntry(archive, entry, destination, expectedDigest, returnDigest = false) {
   const hash = createHash('sha256');
   let count = 0;
   let crc = 0;
@@ -262,11 +262,25 @@ async function inflateEntry(archive, entry, destination, expectedDigest) {
     },
   });
   const inflate = entry.method === 8 ? createInflateRaw() : new PassThrough();
-  const output = destination
-    ? createWriteStream(destination, { flags: 'wx', mode: 0o600 })
+  const output = destination && typeof destination !== 'string'
+    ? new Writable({
+      write(chunk, encoding, callback) {
+        (async () => {
+          let offset = 0;
+          while (offset < chunk.length) {
+            const result = await destination.write(chunk, offset, chunk.length - offset);
+            check(result.bytesWritten > 0);
+            offset += result.bytesWritten;
+          }
+        })().then(() => callback(), callback);
+      },
+    })
+    : destination ? createWriteStream(destination, { flags: 'wx', mode: 0o600 })
     : new Writable({ write(chunk, encoding, callback) { chunks.push(chunk); callback(); } });
   const source = entry.compressedSize > 0
-    ? createReadStream(archive, { start: entry.dataOffset, end: entry.dataOffset + entry.compressedSize - 1 })
+    ? typeof archive === 'string'
+      ? createReadStream(archive, { start: entry.dataOffset, end: entry.dataOffset + entry.compressedSize - 1 })
+      : archive.createReadStream({ start: entry.dataOffset, end: entry.dataOffset + entry.compressedSize - 1, autoClose: false })
     : (async function* () {})();
   await pipeline(
     source,
@@ -276,7 +290,102 @@ async function inflateEntry(archive, entry, destination, expectedDigest) {
     'Recovery content failed verification.');
   const digest = hash.digest('hex');
   if (expectedDigest) check(digest === expectedDigest, 'Recovery content failed verification.');
+  if (returnDigest) return { size: count, sha256: digest };
   return destination ? undefined : Buffer.concat(chunks);
+}
+
+function sourcePathNames(entries) {
+  const paths = new Map();
+  for (const entry of entries.values()) {
+    const parts = (entry.directory ? entry.name.slice(0, -1) : entry.name).split('/');
+    for (let index = 0; index < parts.length; index++) {
+      const name = parts.slice(0, index + 1).join('/');
+      const directory = index < parts.length - 1 || entry.directory;
+      const previous = paths.get(folded(name));
+      check(!previous || (previous.name === name && previous.directory && directory),
+        'Source archive contains conflicting paths.');
+      paths.set(folded(name), { name, directory });
+    }
+  }
+}
+
+function sameFileState(first, second) {
+  return second.isFile() && !second.isSymbolicLink()
+    && ['dev', 'ino', 'size', 'mtimeNs', 'ctimeNs'].every(key => first[key] === second[key]);
+}
+
+async function stableSource(archive, handle, original) {
+  await safeDirectory(path.dirname(archive));
+  check(sameFileState(original, await handle.stat({ bigint: true }))
+    && sameFileState(original, await lstat(archive, { bigint: true })),
+  'Source archive changed during reading.');
+}
+
+async function sourceArchive(archive) {
+  check(typeof archive === 'string' && path.isAbsolute(archive), 'Use an absolute external source archive path.');
+  archive = path.resolve(archive);
+  await safeDirectory(path.dirname(archive));
+  const handle = await regularFile(archive, MAX_ARCHIVE);
+  try {
+    const original = await handle.stat({ bigint: true });
+    const entries = await parseZip(handle, Number(original.size), true);
+    sourcePathNames(entries);
+    await stableSource(archive, handle, original);
+    return { archive, handle, original, entries };
+  } catch (error) { await handle.close(); throw error; }
+}
+
+/** Inspect a source ZIP without extracting files or evaluating its content. */
+export async function listSourceZipEntries(archive) {
+  const source = await sourceArchive(archive);
+  try {
+    return [...source.entries.values()].map(entry => ({ name: entry.name, size: entry.plainSize,
+      compressedSize: entry.compressedSize, directory: entry.directory }));
+  } finally { await source.handle.close(); }
+}
+
+/** Extract one bounded, exact member into a new external file; preserve inputs. */
+export async function extractSourceZipMember({ archive, member, destination, maxBytes, expectedSha256 } = {}) {
+  validateRelativePath(member);
+  check(integer(maxBytes, MAX_FILE) && typeof destination === 'string' && path.isAbsolute(destination),
+    'Supply an absolute external destination and a bounded maximum size.');
+  check(expectedSha256 === undefined || (typeof expectedSha256 === 'string' && SHA.test(expectedSha256)),
+    'Invalid source member checksum.');
+  destination = path.resolve(destination);
+  validateRelativePath(path.basename(destination));
+  const parent = await safeDirectory(path.dirname(destination));
+  const source = await sourceArchive(archive);
+  let output;
+  let identity;
+  let complete = false;
+  try {
+    const entry = source.entries.get(member);
+    check(entry && !entry.directory && entry.plainSize <= maxBytes, 'Source member is missing or exceeds its size limit.');
+    await safeDirectory(parent);
+    output = await open(destination, 'wx', 0o600);
+    identity = await output.stat({ bigint: true });
+    const result = await inflateEntry(source.handle, entry, output, expectedSha256, true);
+    await output.sync();
+    await stableSource(source.archive, source.handle, source.original);
+    await safeDirectory(parent);
+    const current = await lstat(destination, { bigint: true });
+    check(current.isFile() && !current.isSymbolicLink() && current.ino === identity.ino && current.dev === identity.dev,
+      'Source extraction destination changed.');
+    complete = true;
+    return { member, ...result };
+  } finally {
+    if (output) await output.close();
+    await source.handle.close();
+    if (!complete && identity) {
+      try {
+        await safeDirectory(parent);
+        const current = await lstat(destination, { bigint: true });
+        if (current.isFile() && !current.isSymbolicLink() && current.ino === identity.ino && current.dev === identity.dev) {
+          await rm(destination);
+        }
+      } catch { /* Never remove an unverified replacement or existing user file. */ }
+    }
+  }
 }
 
 function validateManifest(manifest, entries) {

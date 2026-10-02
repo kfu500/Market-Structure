@@ -1,5 +1,9 @@
 # Open the private portal on your Windows computer
 
+If you cannot download the prepared private package but retain the original
+HTML and database ZIP, use [setup from originals](setup-from-originals.md).
+That route downloads code from GitHub and rebuilds private storage on your PC.
+
 The local package runs on your computer and opens your normal browser. It does
 not publish a site, expose a network port, or require a hosting account. You need
 **Node.js 24**; running the prepared package does not need npm installation,

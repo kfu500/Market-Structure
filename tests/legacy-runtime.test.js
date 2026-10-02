@@ -4,7 +4,7 @@ import { mkdtemp, mkdir, readFile, writeFile, rm, readdir, symlink } from 'node:
 import os from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
-import { importLegacy } from '../scripts/import-legacy.js';
+import { importLegacy, syncDirectory } from '../scripts/import-legacy.js';
 import { openLegacyRuntime, validatePresentation, sha256, checkedChild } from '../src/legacy-runtime.js';
 import { REPO_ROOT } from '../src/storage.js';
 import { createPortalServer } from '../src/server.js';
@@ -31,6 +31,7 @@ test('legacy import preserves source bytes, activates reconciled data and retain
   const before = sha256(await readFile(f.database));
   const result = await importLegacy(f);
   assert.equal(result.counts.observations, 3);
+  assert.equal(result.directorySync, process.platform === 'win32' ? 'not-supported-on-windows' : 'completed');
   assert.equal(sha256(await readFile(f.database)), before);
   const first = await openLegacyRuntime(f.dataDir);
   assert.equal(first.snapshot().components.DB.synthetic, true);
@@ -81,7 +82,7 @@ test('presentation verification binds private literals, shell and cached executa
 
 test('private artifact paths and altered presentation manifests cannot escape the external release', async t => {
   const f = await fixture(t);
-  await symlink(REPO_ROOT, path.join(f.presentation, 'checkout'));
+  await symlink(REPO_ROOT, path.join(f.presentation, 'checkout'), process.platform === 'win32' ? 'junction' : 'dir');
   await assert.rejects(checkedChild(f.presentation, 'checkout/README.md'), /escapes/);
   await assert.rejects(checkedChild(f.presentation, '../source.sqlite'), /Invalid/);
   f.ui.modules[0].file = '../../src/server.js';
@@ -110,4 +111,54 @@ test('full legacy HTTP contract serves reviewed application and snapshot, never 
   assert.equal((await fetch(`${base}/legacy/module-999.js`)).status, 404);
   for (const route of ['/legacy.json', '/database.sqlite', '/originals/report.pdf', '/api/legacy/raw_files', '/api/legacy/template']) assert.equal((await fetch(`${base}${route}`)).status, 404);
   assert.equal((await fetch(`${base}/api/legacy/bootstrap`, { headers: { Origin: 'https://invalid.example' } })).status, 403);
+});
+
+
+test('directory flush skips the unsupported Windows operation only on win32', async () => {
+  let opened = false;
+  const result = await syncDirectory('synthetic-directory', {
+    platform: 'win32',
+    openDirectory: async () => { opened = true; throw new Error('Synthetic unexpected directory open'); },
+  });
+  assert.equal(result, 'not-supported-on-windows');
+  assert.equal(opened, false);
+  for (const platform of ['linux', 'darwin', 'freebsd']) {
+    const operations = [];
+    const completed = await syncDirectory('synthetic-directory', {
+      platform,
+      openDirectory: async (directory, flags) => {
+        operations.push(['open', directory, flags]);
+        return {
+          sync: async () => { operations.push(['sync']); },
+          close: async () => { operations.push(['close']); },
+        };
+      },
+    });
+    assert.equal(completed, 'completed');
+    assert.deepEqual(operations, [['open', 'synthetic-directory', 'r'], ['sync'], ['close']]);
+  }
+});
+
+test('POSIX directory open, flush and close failures remain observable', async () => {
+  const openError = Object.assign(new Error('Synthetic denied directory'), { code: 'EACCES' });
+  await assert.rejects(syncDirectory('synthetic-directory', {
+    platform: 'linux', openDirectory: async () => { throw openError; },
+  }), error => error === openError);
+
+  let closed = 0;
+  const syncError = Object.assign(new Error('Synthetic unsupported POSIX flush'), { code: 'ENOTSUP' });
+  await assert.rejects(syncDirectory('synthetic-directory', {
+    platform: 'linux',
+    openDirectory: async () => ({
+      sync: async () => { throw syncError; },
+      close: async () => { closed++; },
+    }),
+  }), error => error === syncError);
+  assert.equal(closed, 1);
+
+  const closeError = Object.assign(new Error('Synthetic close failure'), { code: 'EIO' });
+  await assert.rejects(syncDirectory('synthetic-directory', {
+    platform: 'linux',
+    openDirectory: async () => ({ sync: async () => {}, close: async () => { throw closeError; } }),
+  }), error => error === closeError);
 });

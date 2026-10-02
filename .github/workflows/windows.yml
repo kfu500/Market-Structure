@@ -15,4 +15,4 @@ jobs:
       - name: Test native SQLite, analytics, local launcher, and recovery
         # Synthetic fixtures only. POSIX signal delivery has an explicit
         # platform-specific skip; Windows startup and server.stop still run.
-        run: node --test tests/legacy-store.test.js tests/legacy-analytics.test.js tests/local-launcher.test.js tests/reconstruct-recovery.test.js
+        run: node --test tests/legacy-store.test.js tests/legacy-analytics.test.js tests/legacy-runtime.test.js tests/local-launcher.test.js tests/reconstruct-recovery.test.js tests/source-archive.test.js tests/setup-originals.test.js

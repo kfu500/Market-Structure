@@ -21,9 +21,14 @@ async function durableWrite(filename, bytes) {
   const handle = await open(filename, 'wx', 0o600);
   try { await handle.writeFile(bytes); await handle.sync(); } finally { await handle.close(); }
 }
-async function syncDirectory(directory) {
-  const handle = await open(directory, 'r');
+// Native Windows cannot open/fsync directory handles through this Node API.
+// Import calls use the actual platform; injected dependencies exercise both
+// branches in synthetic tests without suppressing real POSIX storage failures.
+export async function syncDirectory(directory, { platform = process.platform, openDirectory = open } = {}) {
+  if (platform === 'win32') return 'not-supported-on-windows';
+  const handle = await openDirectory(directory, 'r');
   try { await handle.sync(); } finally { await handle.close(); }
+  return 'completed';
 }
 
 /** Activate an immutable external copy; preserve the source and older releases. */
@@ -68,8 +73,8 @@ export async function importLegacy({ database, presentation, dataDir }) {
     try { await file.writeFile(`${JSON.stringify(manifest, null, 2)}\n`); await file.sync(); } finally { await file.close(); }
     await rename(temp, path.join(root, 'legacy.json'));
     activated = true;
-    await syncDirectory(root);
-    return { counts: status.counts, warnings: status.validation.warnings.length, release };
+    const directorySync = await syncDirectory(root);
+    return { counts: status.counts, warnings: status.validation.warnings.length, release, directorySync };
   } catch (error) {
     await rm(temp, { force: true });
     if (!activated) await rm(target, { recursive: true, force: true });
@@ -90,6 +95,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     }
     const result = await importLegacy(options);
     console.log(`Private release activated: ${result.counts.observations} reconciled observations; ${result.warnings} source-quality warnings. Original inputs and older releases preserved. Refresh remains unconnected.`);
+    if (result.directorySync === 'not-supported-on-windows') console.log('File contents were synced. Directory flush is unavailable through Node on Windows; directory-entry crash durability is not confirmed.');
   } catch (error) {
     console.error(error.code ? 'Legacy import failed. Check external source files and permissions. No private values are printed.' : error.message);
     process.exitCode = 1;

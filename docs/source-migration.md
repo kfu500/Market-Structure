@@ -119,6 +119,13 @@ bounded payload decompression, component hashes, pointer/value agreement,
 duplicate metric/period/frequency records, finite values, dates, and units.
 Source roles may overlap and are not additive.
 
+Legacy import syncs all new file contents before atomic activation. On POSIX it
+also syncs release directories and propagates directory-flush failures. Native
+Windows skips only the unsupported directory open/fsync operation and reports
+`directorySync: not-supported-on-windows`; file sync, validation, atomic
+activation, and cleanup remain in place. Directory-entry crash durability is
+not confirmed on that Windows path.
+
 Missing-date provisional records are retained but quarantined from dated
 freshness coverage. Unspecified units remain explicit rather than guessed.
 Month-precision observation dates retain that precision. The data-quality panel
