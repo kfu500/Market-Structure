@@ -195,6 +195,43 @@ test('standalone preflight rejects a source with committed WAL changes before it
   assert.equal(await assertStandaloneLegacy(filename), filename);
 });
 
+test('portable platform uses a verified private copy with stable observations and complete cleanup', async t => {
+  const filename = await syntheticLegacyFixture(t);
+  const temporaryDirectory = path.dirname(filename);
+  const originalBytes = await readFile(filename);
+  const expectedFileHash = createHash('sha256').update(originalBytes).digest('hex');
+  const store = await openLegacyStore(filename, { now, platform: 'win32', temporaryDirectory, expectedFileHash });
+  t.after(() => store.close());
+  const entries = await readdir(temporaryDirectory);
+  const temporary = entries.find(name => name.startsWith('market-structure-readonly-'));
+  assert.ok(temporary, 'portable branch creates its own exclusive snapshot directory');
+  assert.deepEqual(await readdir(path.join(temporaryDirectory, temporary)), ['snapshot.sqlite']);
+  assert.deepEqual(await readFile(path.join(temporaryDirectory, temporary, 'snapshot.sqlite')), originalBytes);
+  assert.equal(store.snapshot().components.DB.rows[0].value, 10);
+  assert.deepEqual(await readFile(filename), originalBytes, 'loading never writes the source');
+  const editor = new DatabaseSync(filename);
+  try { editor.exec("UPDATE sources SET document='Synthetic later source revision'"); }
+  finally { editor.close(); }
+  assert.equal(store.observations().rows[0].sourceDocument, 'Synthetic document', 'queries stay on the verified process snapshot');
+  store.close();
+  store.close();
+  assert.deepEqual(await readdir(temporaryDirectory), ['synthetic.sqlite']);
+});
+
+test('portable snapshot cleanup covers digest errors, validation errors and forbidden temporary paths', async t => {
+  const filename = await syntheticLegacyFixture(t);
+  const temporaryDirectory = path.dirname(filename);
+  const options = { now, platform: 'win32', temporaryDirectory };
+  await assert.rejects(openLegacyStore(filename, { ...options, expectedFileHash: '0'.repeat(64) }), /pinned snapshot digest/);
+  assert.deepEqual(await readdir(temporaryDirectory), ['synthetic.sqlite']);
+  await assert.rejects(openLegacyStore(filename, { ...options, maxComponentBytes: 8 }), /size limit/);
+  assert.deepEqual(await readdir(temporaryDirectory), ['synthetic.sqlite']);
+  await assert.rejects(openLegacyStore(filename, { ...options, temporaryDirectory: REPO_ROOT }), /outside the repository/);
+  await writeFile(`${filename}-wal`, 'Synthetic active WAL marker');
+  await assert.rejects(openLegacyStore(filename, options), /active journal/);
+  assert.deepEqual((await readdir(temporaryDirectory)).sort(), ['synthetic.sqlite', 'synthetic.sqlite-wal']);
+});
+
 test('rejects virtualized required tables and reports future dates without calling snapshots live', async t => {
   await rejects(t, db => db.exec('ALTER TABLE research RENAME TO hidden_research; CREATE VIEW research AS SELECT * FROM hidden_research;'), /replaced by views/);
   const { store } = await load(t, db => db.exec("UPDATE observations SET as_of='2027-01-01' WHERE observation_id='synthetic-daily'"));

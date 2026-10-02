@@ -14,8 +14,8 @@ opens a local browser URL while the tunnel is connected. A clickable private
 HTTPS address would require a separately configured identity-aware proxy/VPN;
 none is assumed or enabled here.
 
-ChatGPT Sites or another private preview must support a persistent Node 24 Linux
-process with `/proc` and read-only SQLite, an external private persistent mount,
+ChatGPT Sites or another private preview must support a persistent Node 24
+process with read-only SQLite, an external private persistent mount,
 and authentication covering every page, asset, and data API. A static HTML
 hosting feature alone cannot run this application. The connected capability's
 runtime, identity restrictions, storage persistence, and compatible Host/Origin

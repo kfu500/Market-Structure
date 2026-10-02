@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
-import { constants } from 'node:fs';
-import { open, stat } from 'node:fs/promises';
+import { constants, rmSync } from 'node:fs';
+import { mkdtemp, open, stat } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { inflateSync } from 'node:zlib';
 import { externalPath } from './storage.js';
@@ -163,13 +165,60 @@ async function hashHandle(handle) {
   }
 }
 
+function assertUnchanged(before, after) {
+  if (before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs) fail('database changed while being read');
+}
+
+function removePortableSnapshot(directory) {
+  if (directory) rmSync(directory, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
+}
+
+// Windows has no /proc descriptor pathname. An exclusive private temporary copy
+// gives SQLite a stable native pathname without reopening the mutable source.
+// Windows inherits the current user's temporary-directory ACL; on POSIX,
+// mkdtemp and the explicit file mode also exclude other users.
+async function copyPortableSnapshot(source, { expectedFileHash, temporaryDirectory }) {
+  const root = await externalPath(temporaryDirectory, { directory: true });
+  const directory = await mkdtemp(path.join(root, 'market-structure-readonly-'));
+  const filename = path.join(directory, 'snapshot.sqlite');
+  let target;
+  try {
+    target = await open(filename, 'wx+', 0o600);
+    const hash = createHash('sha256');
+    const buffer = Buffer.allocUnsafe(4 * MiB);
+    let position = 0;
+    for (;;) {
+      const { bytesRead } = await source.read(buffer, 0, buffer.length, position);
+      if (!bytesRead) break;
+      const chunk = buffer.subarray(0, bytesRead);
+      hash.update(chunk);
+      await target.writeFile(chunk);
+      position += bytesRead;
+    }
+    const copiedHash = hash.digest('hex');
+    if (expectedFileHash !== undefined && copiedHash !== expectedFileHash) fail('database file SHA-256 does not match the pinned snapshot digest');
+    await target.sync();
+    if (await hashHandle(target) !== copiedHash) fail('private snapshot copy SHA-256 does not match its source bytes');
+    await target.close();
+    target = undefined;
+    return { directory, filename };
+  } catch (error) {
+    await target?.close();
+    removePortableSnapshot(directory);
+    throw error;
+  }
+}
+
 /**
  * Open an external, checkpointed SQLite snapshot without running imported code.
  * Components remain lossless JSON; normalized rows are reconciled with their
  * original component pointers. Mixed-frequency and overlapping source roles are
  * preserved, never added together or silently converted to a monthly schema.
  */
-export async function openLegacyStore(filename, { now = new Date(), maxComponentBytes = 256 * MiB, maxTotalBytes = 512 * MiB, expectedFileHash } = {}) {
+export async function openLegacyStore(filename, {
+  now = new Date(), maxComponentBytes = 256 * MiB, maxTotalBytes = 512 * MiB, expectedFileHash,
+  platform = process.platform, temporaryDirectory = os.tmpdir(),
+} = {}) {
   if (!(now instanceof Date) || !Number.isFinite(now.valueOf())) throw new Error('A valid validation date is required.');
   if (![maxComponentBytes, maxTotalBytes].every(value => Number.isSafeInteger(value) && value > 0)) throw new Error('Positive payload size limits are required.');
   if (expectedFileHash !== undefined && (typeof expectedFileHash !== 'string' || !/^[a-f0-9]{64}$/.test(expectedFileHash))) {
@@ -177,17 +226,27 @@ export async function openLegacyStore(filename, { now = new Date(), maxComponent
   }
   const resolved = await assertStandaloneLegacy(filename);
   // The descriptor pins the validated regular file against leaf replacement.
-  // Linux /proc is available in the supported cloud environment. SQLite opens
-  // this same file read-only with immutable=1, so no journal/sidecar is written.
+  // Linux opens this descriptor read-only with immutable=1. Other platforms
+  // receive a verified private process snapshot, opened by its native pathname.
   const handle = await open(resolved, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
   let db;
+  let portableSnapshot;
   try {
     const before = await handle.stat({ bigint: true });
     if (!before.isFile()) fail('input must be a regular SQLite file');
-    if (expectedFileHash !== undefined && await hashHandle(handle) !== expectedFileHash) {
-      fail('database file SHA-256 does not match the pinned snapshot digest');
+    let sqliteFilename;
+    if (platform === 'linux') {
+      if (expectedFileHash !== undefined && await hashHandle(handle) !== expectedFileHash) fail('database file SHA-256 does not match the pinned snapshot digest');
+      sqliteFilename = `file:/proc/self/fd/${handle.fd}?mode=ro&immutable=1`;
+    } else {
+      portableSnapshot = await copyPortableSnapshot(handle, { expectedFileHash, temporaryDirectory });
+      assertUnchanged(before, await handle.stat({ bigint: true }));
+      sqliteFilename = portableSnapshot.filename;
     }
-    db = new DatabaseSync(`file:/proc/self/fd/${handle.fd}?mode=ro&immutable=1`, {
+    await noJournal(resolved);
+    // Native file paths and readOnly are documented Node 24 DatabaseSync
+    // options. The portable copy is never shared with an updater or writer.
+    db = new DatabaseSync(sqliteFilename, {
       readOnly: true, allowExtension: false, enableForeignKeyConstraints: true,
       enableDoubleQuotedStringLiterals: false,
     });
@@ -298,7 +357,8 @@ export async function openLegacyStore(filename, { now = new Date(), maxComponent
     }
     counts.research = research.length;
     const after = await handle.stat({ bigint: true });
-    if (before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs) fail('database changed while being read');
+    assertUnchanged(before, after);
+    await noJournal(resolved);
     const warnings = [];
     if (quarantined.length) warnings.push(`${quarantined.length} provisional MTD records have missing dates and are quarantined from dated freshness coverage.`);
     if (ambiguousUnits) warnings.push(`${ambiguousUnits} observations retain source-reported unspecified units; no unit conversion or cross-source aggregation is performed.`);
@@ -350,10 +410,15 @@ export async function openLegacyStore(filename, { now = new Date(), maxComponent
           ${joins}${where} ORDER BY o.metric_id,o.period,o.frequency,o.observation_id LIMIT ? OFFSET ?`).all(...parameters, limit, offset);
         return { total, offset, limit, rows };
       },
-      close() { if (!closed) { closed = true; db.close(); } },
+      close() {
+        if (!closed) {
+          closed = true;
+          try { db.close(); } finally { removePortableSnapshot(portableSnapshot?.directory); }
+        }
+      },
     });
   } catch (error) {
-    db?.close();
+    try { db?.close(); } finally { removePortableSnapshot(portableSnapshot?.directory); }
     throw error;
   } finally { await handle.close(); }
 }

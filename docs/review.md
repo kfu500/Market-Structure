@@ -90,3 +90,32 @@ durable destination; local verification does not establish off-machine durabilit
 A fresh browser capture was emitted directly as an image for layout review.
 Private screenshots, archive manifests, recovery evidence, and original upload
 packages remain outside the repository.
+
+## Local-computer package
+
+Native Windows no longer depends on Linux `/proc` for SQLite reads. It copies
+the pinned input descriptor to a private process snapshot, verifies source and
+copy hashes and source stability, rejects active journals, opens native SQLite
+read-only, and removes the copy on close. Linux retains descriptor pinning.
+The portable path was exercised against the full private source in Linux;
+actual Windows execution remains unverified in this environment.
+
+The local launcher validates the private release, owns an OS-assigned loopback
+port, opens the browser only after readiness, and closes its server on shutdown.
+The prepared viewer and offline reconstruction require only Node 24. Windows
+ACLs, script policy, browser opening and first-run behavior still need validation
+on the user's computer. Native Windows CI is configured with synthetic inputs;
+its remote result has not been observed.
+
+The recovery format stores duplicate files once and can derive a working
+database from a verified member of the byte-identical original ZIP. Each
+transport part is 30 MiB or less. The Node-only reconstructor verifies parts,
+the complete archive, ZIP CRCs, all file hashes and derived database bytes,
+rejects unsafe paths and existing output folders, and leaves inputs unchanged.
+No uploaded script is executed. The portable selection omits obsolete releases,
+parsed source caches and redundant transport wrappers while retaining the
+original archive/HTML and everything required by the active release.
+
+Current core verification: 94 Node tests, 34 Python tests, and repository privacy
+checks pass. See [local-computer instructions](local-computer.md); original
+private artifacts and recovery downloads remain external to Git.

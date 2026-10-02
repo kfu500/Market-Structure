@@ -6,7 +6,9 @@ Repository code contains reviewed presentation modules, shared calculations, loa
 
 ## Launch the migrated portal
 
-Use **Node.js 24 on Linux**; the read-only SQLite loader relies on Linux `/proc`. Install the two pinned development parsers used by code-porting and review checks:
+Use **Node.js 24**. For the prepared Windows package, follow [the local-computer guide](docs/local-computer.md) and double-click `Start-Market-Structure.cmd`; no npm installation, Python, WSL, or Docker is needed for the viewer. Native Windows execution remains unverified in this Linux workspace.
+
+Linux pins the SQLite descriptor through `/proc`; Windows uses a hash-verified private temporary copy and the native Node SQLite reader. The following commands are for the existing Linux development workspace. Install the two pinned development parsers used by code-porting and review checks:
 
 ```sh
 cd /workspace/Market-Structure

@@ -112,8 +112,9 @@ outputs outside every Git checkout.
 
 ## Validation and interpretation
 
-The database opens read-only through a pinned Linux file descriptor with
-extension loading disabled. Checks cover SQLite integrity and foreign keys,
+On Linux the database opens read-only through a pinned file descriptor. Native
+Windows uses a hash-verified private temporary copy and read-only Node SQLite;
+that copy is removed on normal close. Extension loading is disabled. Checks cover SQLite integrity and foreign keys,
 bounded payload decompression, component hashes, pointer/value agreement,
 duplicate metric/period/frequency records, finite values, dates, and units.
 Source roles may overlap and are not additive.

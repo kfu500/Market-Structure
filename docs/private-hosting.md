@@ -6,7 +6,9 @@ public deployment or verified refresh connection is configured.
 
 ## Local or tunneled access
 
-Use Node 24 on Linux: the SQLite runtime requires `/proc`. After importing a
+This systemd hosting path uses Node 24 on Linux and `/proc`. The separate
+[local Windows viewer](local-computer.md) uses a verified private temporary
+SQLite copy and does not require Linux hosting. After importing a
 reviewed release as described in [source migration](source-migration.md):
 
 ```sh

@@ -1,0 +1,18 @@
+name: Windows local viewer
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  native-windows:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Test native SQLite, analytics, local launcher, and recovery
+        # Synthetic fixtures only. POSIX signal delivery has an explicit
+        # platform-specific skip; Windows startup and server.stop still run.
+        run: node --test tests/legacy-store.test.js tests/legacy-analytics.test.js tests/local-launcher.test.js tests/reconstruct-recovery.test.js
