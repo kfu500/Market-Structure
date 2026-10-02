@@ -1,0 +1,3306 @@
+{
+  "schemaVersion": 1,
+  "dataset": {
+    "name": "Synthetic demonstration — all values invented",
+    "kind": "synthetic",
+    "asOf": "2026-09-05"
+  },
+  "metrics": [
+    {
+      "id": "net_revenue",
+      "label": "Monthly net revenue",
+      "unit": "USD millions",
+      "aggregation": "sum",
+      "staleAfterDays": 45,
+      "entities": [
+        "CME",
+        "CBOE",
+        "ICE",
+        "HOOD",
+        "NDAQ",
+        "TW"
+      ]
+    },
+    {
+      "id": "futures_volume",
+      "label": "Monthly futures volume",
+      "unit": "contracts",
+      "aggregation": "sum",
+      "staleAfterDays": 45,
+      "entities": [
+        "CME",
+        "ICE"
+      ]
+    },
+    {
+      "id": "options_volume",
+      "label": "Monthly options volume",
+      "unit": "contracts",
+      "aggregation": "sum",
+      "staleAfterDays": 45,
+      "entities": [
+        "CBOE",
+        "HOOD",
+        "NDAQ"
+      ]
+    },
+    {
+      "id": "equity_volume",
+      "label": "Monthly equity share volume",
+      "unit": "shares",
+      "aggregation": "sum",
+      "staleAfterDays": 45,
+      "entities": [
+        "NDAQ",
+        "HOOD"
+      ]
+    },
+    {
+      "id": "traded_notional",
+      "label": "Monthly traded notional",
+      "unit": "USD billions",
+      "aggregation": "sum",
+      "staleAfterDays": 45,
+      "entities": [
+        "TW"
+      ]
+    },
+    {
+      "id": "prediction_notional",
+      "label": "Monthly prediction-market notional",
+      "unit": "USD millions",
+      "aggregation": "sum",
+      "staleAfterDays": 45,
+      "entities": [
+        "PREDICTION"
+      ]
+    },
+    {
+      "id": "funded_accounts",
+      "label": "Funded accounts at month end",
+      "unit": "count",
+      "aggregation": "last",
+      "staleAfterDays": 45,
+      "entities": [
+        "HOOD"
+      ]
+    },
+    {
+      "id": "revenue_per_contract",
+      "label": "Monthly revenue per contract",
+      "unit": "USD per contract",
+      "aggregation": "average",
+      "staleAfterDays": 45,
+      "entities": [
+        "CME",
+        "ICE"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 120,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 125.1588,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 128.6814,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 129.7013,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 128.5289,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 126.5058,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 125.3735,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 126.4548,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 130.0312,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 135.2108,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 140.3477,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 143.8161,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 144.7748,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 143.5631,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 141.541,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 140.4496,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 141.5924,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 145.2221,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 150.4216,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "net_revenue",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 155.5357,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 152.4,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 158.9516,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 163.4254,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 164.7207,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 163.2317,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 160.6623,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 159.2243,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 160.5975,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 165.1396,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 171.7177,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 178.2416,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 182.6465,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 183.864,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 182.3252,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 179.7571,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 178.371,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 179.8224,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 184.432,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 191.0354,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "net_revenue",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 197.5303,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 184.8,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 192.7445,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 198.1694,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 199.74,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 197.9346,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 194.8189,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 193.0752,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 194.7403,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 200.248,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 208.2246,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 216.1355,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 221.4768,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 222.9532,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 221.0872,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 217.9732,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 216.2925,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 218.0524,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 223.642,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 231.6492,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "net_revenue",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 239.5249,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 217.2,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 226.5374,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 232.9134,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 234.7594,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 232.6374,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 228.9754,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 226.926,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 228.8831,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 235.3564,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 244.7315,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 254.0294,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 260.3072,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 262.0424,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 259.8493,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 256.1892,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 254.2139,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 256.2823,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 262.8519,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 272.263,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "net_revenue",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 281.5196,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 249.6,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 260.3303,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 267.6574,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 269.7788,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 267.3402,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 263.132,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 260.7769,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 263.0259,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 270.4648,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 281.2385,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 291.9233,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 299.1375,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 301.1317,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 298.6113,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 294.4053,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 292.1353,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 294.5123,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 302.0619,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 312.8769,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "net_revenue",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 323.5142,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 282,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 294.1231,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 302.4014,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 304.7981,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 302.043,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 297.2886,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 294.6277,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 297.1687,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 305.5732,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 317.7454,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 329.8172,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 337.9679,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 340.2209,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 337.3734,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 332.6214,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 330.0567,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 332.7422,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 341.2718,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 353.4907,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "net_revenue",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 365.5088,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 18000000,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 18773816,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 19302214,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 19455200,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 19279340,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 18975866,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 18806024,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 18968213,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 19504674,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 20281619,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 21052159,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 21572416,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 21716225,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 21534470,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 21231152,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 21067446,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 21238866,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 21783309,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "futures_volume",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 23330352,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 22860000,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 23842747,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 24513812,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 24708103,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 24484762,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 24099349,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 23883650,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 24089631,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 24770936,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 25757656,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 26736242,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 27396969,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 27579606,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 27348776,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 26963563,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 26755657,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "futures_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 26973360,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 8000000,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 8343918,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 8578762,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 8646755,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 8568596,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 8433718,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 8358233,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 8430317,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 8668744,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 9014053,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 9356515,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 9587741,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 9651656,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 9570875,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 9436068,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 9363310,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 9439496,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 9681471,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 10028104,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CBOE",
+      "metric": "options_volume",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 10369045,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 10160000,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 10596776,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 10895028,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 10981379,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 10882117,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 10710822,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 10614956,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 10706503,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 11009305,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 11447847,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 11882774,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 12176431,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 12257603,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 12155012,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 11983806,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 11891403,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 11988160,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 12295468,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 12735692,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "options_volume",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 13168687,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 12320000,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 12849634,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 13211293,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 13316003,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 13195637,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 12987926,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 12871678,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 12982688,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 13349866,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 13881642,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 14409033,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 14765120,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 14863550,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 14739148,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 14531544,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 14419497,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 14536824,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 14909465,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 15443281,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "options_volume",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": null,
+      "unit": "contracts",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 95000000,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 99084031,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 101872798,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 102680220,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 101752074,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 100150402,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 99254014,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 100110015,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 102941335,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 107041879,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 111108618,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 113854419,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 114613410,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 113654145,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 112053302,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 111189301,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 112094015,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 114967464,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 119083739,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "NDAQ",
+      "metric": "equity_volume",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 123132411,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 120650000,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 125836719,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 129378453,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 130403879,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 129225134,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 127191010,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 126052597,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 127139719,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 130735496,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 135943187,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 141107944,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 144595112,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 145559031,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 144340765,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 142307693,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 141210412,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 142359399,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 146008679,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 151236348,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "equity_volume",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 156378162,
+      "unit": "shares",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 620,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 646.6537,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 664.854,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 670.1235,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 664.0662,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 653.6131,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 647.763,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 653.3496,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 671.8277,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 698.5891,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 725.1299,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 743.0499,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 748.0033,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 741.7428,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 731.2952,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 725.6565,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 731.5609,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 750.314,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 777.1781,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "TW",
+      "metric": "traded_notional",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 803.601,
+      "unit": "USD billions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 150,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 156.4485,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 160.8518,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 162.1267,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 160.6612,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 158.1322,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 156.7169,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 158.0684,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 162.539,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 169.0135,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 175.4347,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 179.7701,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 180.9685,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 179.4539,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 176.9263,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 175.5621,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 176.9906,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 181.5276,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 188.027,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "PREDICTION",
+      "metric": "prediction_notional",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 194.4196,
+      "unit": "USD millions",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 1500000,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 1564485,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 1608518,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 1621267,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 1606612,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 1581322,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 1567169,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 1580684,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 1625390,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 1690135,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 1754347,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 1797701,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 1809685,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 1794539,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 1769263,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 1755621,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 1769906,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 1815276,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 1880270,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "HOOD",
+      "metric": "funded_accounts",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 1944196,
+      "unit": "count",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 0.8,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 0.8344,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 0.8579,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 0.8647,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 0.8569,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 0.8434,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 0.8358,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 0.843,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 0.8669,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 0.9014,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 0.9357,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 0.9588,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 0.9652,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 0.9571,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 0.9436,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 0.9363,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 0.9439,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 0.9681,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 1.0028,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "CME",
+      "metric": "revenue_per_contract",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 1.0369,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-01-31",
+      "observedAt": "2025-02-02",
+      "value": 1.016,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-02-28",
+      "observedAt": "2025-03-02",
+      "value": 1.0597,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-03-31",
+      "observedAt": "2025-04-02",
+      "value": 1.0895,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-04-30",
+      "observedAt": "2025-05-02",
+      "value": 1.0981,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-05-31",
+      "observedAt": "2025-06-02",
+      "value": 1.0882,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-06-30",
+      "observedAt": "2025-07-02",
+      "value": 1.0711,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-07-31",
+      "observedAt": "2025-08-02",
+      "value": 1.0615,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-08-31",
+      "observedAt": "2025-09-02",
+      "value": 1.0707,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-09-30",
+      "observedAt": "2025-10-02",
+      "value": 1.1009,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-10-31",
+      "observedAt": "2025-11-02",
+      "value": 1.1448,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-11-30",
+      "observedAt": "2025-12-02",
+      "value": 1.1883,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2025-12-31",
+      "observedAt": "2026-01-02",
+      "value": 1.2176,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-01-31",
+      "observedAt": "2026-02-02",
+      "value": 1.2258,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-02-28",
+      "observedAt": "2026-03-02",
+      "value": 1.2155,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-03-31",
+      "observedAt": "2026-04-02",
+      "value": 1.1984,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-04-30",
+      "observedAt": "2026-05-02",
+      "value": 1.1891,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-05-31",
+      "observedAt": "2026-06-02",
+      "value": 1.1988,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-06-30",
+      "observedAt": "2026-07-02",
+      "value": 1.2295,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-07-31",
+      "observedAt": "2026-08-02",
+      "value": 1.2736,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    },
+    {
+      "entity": "ICE",
+      "metric": "revenue_per_contract",
+      "period": "2026-08-31",
+      "observedAt": "2026-09-02",
+      "value": 1.3169,
+      "unit": "USD per contract",
+      "source": "Synthetic fixture; invented for development, not company-reported."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "market-structure-portal",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Private market structure research portal with external snapshot data",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test tests/*.test.js && python3 -m unittest discover -s tests -p 'test_*.py'",
+    "test:browser": "python3 tests/browser_smoke.py",
+    "check:privacy": "node scripts/check-repository.js",
+    "check": "npm test && npm run check:privacy",
+    "data:import": "node scripts/import-data.js",
+    "data:validate": "node scripts/validate-data.js",
+    "data:port-ui": "node scripts/port-legacy-ui.js",
+    "data:import-legacy": "node scripts/import-legacy.js",
+    "test:legacy-browser": "python3 tests/legacy_browser.py"
+  },
+  "devDependencies": {
+    "acorn": "8.18.0",
+    "astring": "1.9.0"
+  }
+}
