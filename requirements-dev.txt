@@ -1,2 +1,3 @@
 # Optional browser-test dependency; not needed to launch the portal.
 playwright==1.62.0
+Pillow==12.3.0

@@ -12,6 +12,9 @@
     "dev": "node --watch src/server.js",
     "test": "node --test tests/*.test.js && python3 -m unittest discover -s tests -p 'test_*.py'",
     "test:browser": "python3 tests/browser_smoke.py",
+    "build:browser": "node scripts/build-browser.js",
+    "test:browser-file": "python3 tests/browser_file_smoke.py",
+    "test:browser-export": "python3 tests/browser_export_smoke.py",
     "check:privacy": "node scripts/check-repository.js",
     "check": "npm test && npm run check:privacy",
     "data:import": "node scripts/import-data.js",
@@ -21,7 +24,11 @@
     "test:legacy-browser": "python3 tests/legacy_browser.py"
   },
   "devDependencies": {
+    "@noble/hashes": "2.4.0",
     "acorn": "8.18.0",
-    "astring": "1.9.0"
+    "astring": "1.9.0",
+    "esbuild": "0.28.2",
+    "fflate": "0.8.3",
+    "sql.js": "1.14.2"
   }
 }

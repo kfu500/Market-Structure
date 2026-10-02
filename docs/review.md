@@ -59,7 +59,8 @@ values, and research context. Future adapters must reconcile database and
 presentation together, or refactor remaining content bindings, before claiming
 a coherent refreshed release.
 
-No public hosting, Git push, or verified market-data refresh is included. Private
+No public hosting or verified market-data refresh is included. Only reviewed
+code is delivered through the authorized GitHub branch. Private
 hosting still needs an authenticated SSO/VPN boundary, TLS, encrypted persistent
 storage, backups, and operational testing. Scheduled updates require licensed
 source adapters, secure credentials, source-specific validation, atomic imports,
@@ -150,3 +151,54 @@ Linux. Native Windows first-run behavior remains unverified here; its CI job
 includes the new source-archive, setup and importer tests. This route restores
 the portal from original sources; sandbox-only audit evidence remains in the
 separate private backup. The cloud attachment delivery issue remains unresolved.
+
+## Browser edition for continued development
+
+The migrated portal now has a single code-only `Open-Market-Structure.html`
+build. End users open it in Edge or Chrome and select their private originals;
+Node, an installer, a local server, WSL and Docker are unnecessary for this
+edition. Development remains in the repository. Rebuilding and distributing
+the HTML delivers code changes while original data files remain separate.
+
+The shared parser statically separates source without evaluating it; all source
+modules must match reviewed code. Bounded archive parsing verifies CRCs and
+available manifest hashes. SQLite WebAssembly uses the same record-validation
+core as Node, with bounded inflation and verified zlib checksums. Input WALs
+are rejected. HTML/database components and calculation records must match.
+The generated application's CSP allows exact reviewed scripts and bundled WASM,
+with external connections and assets disabled. Third-party license notices are
+included. The privacy gate requires byte-for-byte equality to a fresh code-only
+build; arbitrary large HTML does not receive an exception.
+
+Current verification:
+
+- Clean locked dependency installation and deterministic artifact check passed.
+- **142 Node checks and 34 Python checks**, plus repository privacy checks,
+  passed. Corrupt archives, unknown scripts, altered hashes, invalid dates,
+  missing units and duplicate records are covered with synthetic inputs.
+- The original server application's eight synthetic browser scenarios passed;
+  all 16 private scenarios passed on a freshly started current-code server.
+- The final standalone artifact passed **21 actual-source browser scenarios**:
+  company pages, history, independent YoY/T3M and fee calculations, research,
+  consensus, prediction/context views, quality, CSV, print, decoded PNG export,
+  mobile layout, rejected unreviewed input and cleared session state.
+- Original HTML ZIP plus all four database wrappers passed six browser checks,
+  including loading, PNG export, reset and source preservation.
+- Nine synthetic PNG export checks passed, including actual pixel colors,
+  gradients, white background, download behavior and absence of network assets.
+- Actual source inputs remained byte-identical; no non-document HTTP or
+  WebSocket connection, browser error, or persistent browser storage was observed.
+
+The cloud Chromium policy blocks `file://` before application execution. Tests
+therefore served the identical self-contained artifact through loopback, with
+only the initial/reload HTML document allowed and no backend or asset requests.
+Direct local opening on managed Windows is not yet verified. Browser policy
+must be respected; no policy workaround is included. Tested source compatibility
+applies to the retained original pair, not unseen HTML export versions.
+
+Data is session-only. Reopening requires selecting private files again; backups
+remain the user's preserved originals and external recovery archives. PNG/CSV
+exports may contain private values and must be saved outside Git. Full-page
+printing uses the browser's Print / Save PDF facility. No live refresh,
+persistent edits, public hosting, or repair of cloud attachment delivery is
+claimed. Private testing evidence stays outside the repository.

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="__BROWSER_CSP__">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Market Structure · Open your private portal</title>
+<!-- __BROWSER_NOTICES__ -->
+<link rel="icon" href="data:,">
+<style>__BROWSER_CSS__</style>
+</head>
+<body>
+<section id="browser-loader" aria-label="Open private source files">
+  <div class="eyebrow">MARKET STRUCTURE · PRIVATE BROWSER EDITION</div>
+  <h1>Open your research portal</h1>
+  <p class="intro">Your company pages, charts and historical research. No installation required.</p>
+  <form id="browser-form">
+    <label for="portal-html-input">1. Choose your original portal HTML</label>
+    <input id="portal-html-input" type="file" accept=".html,.htm,.zip" required>
+    <small>Select your original Market_Structure_Portal HTML file or its HTML ZIP.</small>
+    <label for="database-input">2. Choose the matching database</label>
+    <input id="database-input" type="file" accept=".zip,.sqlite,.sqlite3,.db">
+    <small>Use the complete original database ZIP or a standalone SQLite database.</small>
+    <details><summary>Have the database split across numbered ZIP files?</summary>
+      <label for="database-parts-input">Select all database parts together</label>
+      <input id="database-parts-input" type="file" accept=".zip" multiple>
+      <small>Use this instead of the complete database selector above. Hold Ctrl to select all parts.</small>
+    </details>
+    <button id="open-portal" type="submit">Open portal</button>
+  </form>
+  <p id="browser-progress" role="status" aria-live="polite" hidden></p>
+  <p id="browser-error" role="alert" tabindex="-1" hidden></p>
+  <button id="browser-reset" type="button" hidden>Choose files again</button>
+  <p class="privacy">Files are read on this computer and held in this tab’s memory. They are not uploaded or changed. Keep your originals as your private backup; select them again after closing this tab. This is a historical snapshot, with no verified live refresh.</p>
+</section>
+<div id="browser-portal" hidden>
+  <aside id="private-snapshot-banner" role="status">
+    <strong>PRIVATE SNAPSHOT</strong>
+    <span id="private-snapshot-status">Validating historical data…</span>
+    <button id="private-quality-toggle" type="button">Data quality</button>
+    <button id="private-reload" type="button">Choose files</button>
+  </aside>
+  <div id="browser-tools">
+    <span id="browser-export-status" role="status"></span>
+    <button id="browser-export" type="button" hidden>Save chart PNG</button>
+    <button id="browser-print" type="button">Print / Save PDF</button>
+  </div>
+  <section id="private-quality" hidden aria-label="Data quality and preservation"></section>
+  <div id="legacy-root"></div>
+  <div id="private-selected-status" role="status" hidden></div>
+</div>
+<script>__BROWSER_JS__</script>
+</body>
+</html>

@@ -18,3 +18,4 @@ jobs:
       - run: python3 -m pip install -r requirements-dev.txt
       - run: python3 -m playwright install --with-deps chromium
       - run: npm run test:browser
+      - run: npm run test:browser-export

@@ -6,6 +6,22 @@ Repository code contains reviewed presentation modules, shared calculations, loa
 
 ## Launch the migrated portal
 
+For a work computer where software installation is restricted, use the
+[browser edition](docs/browser-edition.md). Download this branch using GitHub's
+**Code → Download ZIP**, choose **Extract All**, then open
+**Open-Market-Structure.html** in Edge or Chrome. Select your original portal
+HTML and matching database ZIP, then click **Open portal**. No Node, installer,
+local server, WSL or Docker is required. Files stay in this browser session;
+select them again after closing or reloading the tab. Company browser policy
+still applies. This is the migrated application with private local loading.
+
+For future code changes, rebuild with `npm run build:browser`, review and test,
+then distribute the updated code-only HTML. Private originals remain separate.
+The standalone artifact includes SQLite WebAssembly and other pinned code
+dependencies; its exact deterministic build is checked by the privacy gate.
+
+### Optional Node application
+
 If recovery-file downloads are unavailable and you still have the original HTML
 and database ZIP, follow [Windows setup from originals](docs/setup-from-originals.md).
 Download the code-only branch ZIP from GitHub, extract it, and run
@@ -13,7 +29,7 @@ Download the code-only branch ZIP from GitHub, extract it, and run
 
 Use **Node.js 24**. For the prepared Windows package, follow [the local-computer guide](docs/local-computer.md) and double-click `Start-Market-Structure.cmd`; no npm installation, Python, WSL, or Docker is needed for the viewer. Native Windows execution remains unverified in this Linux workspace.
 
-Linux pins the SQLite descriptor through `/proc`; Windows uses a hash-verified private temporary copy and the native Node SQLite reader. The following commands are for the existing Linux development workspace. Install the two pinned development parsers used by code-porting and review checks:
+Linux pins the SQLite descriptor through `/proc`; Windows uses a hash-verified private temporary copy and the native Node SQLite reader. The following commands are for the existing Linux development workspace. Install the pinned development dependencies used by code-porting, browser builds and review checks:
 
 ```sh
 cd /workspace/Market-Structure
@@ -71,6 +87,8 @@ Chromium may also need Linux system dependencies. An installed `chromium` is use
 
 | Location | Purpose |
 | --- | --- |
+| `browser/`, `Open-Market-Structure.html` | Browser-only local loading, SQLite WASM, reviewed rendering and generated code-only application |
+| `src/legacy-store-core.js`, `src/legacy-port-core.js` | Shared data validation and non-executing source separation |
 | `src/legacy-store.js`, `src/legacy-runtime.js` | Read-only database validation, private releases, presentation integrity |
 | `src/legacy-analytics.js` | Reviewed calendar comparisons and safe CSV values |
 | `public/legacy/`, `public/legacy-*` | Reviewed presentation code, private bootstrap, integration hooks |
@@ -80,6 +98,6 @@ Chromium may also need Linux system dependencies. An installed `chromium` is use
 
 Review code diffs and the private source mapping together when regenerating legacy modules. Private packs are tied to exact code fingerprints; editing modules requires a matching reviewed pack. Keep reports, commentary, real observations, fingerprints, credentials, screenshots, and browser downloads outside every Git checkout. Automated privacy checks supplement manual review.
 
-[Private hosting and refresh operations](docs/private-hosting.md) describes authentication, TLS, persistent storage, backups, licensed source adapters, and scheduling. A future refresh must reconcile both the database and snapshot-specific content in the private presentation pack. No Git push or public publication is part of this migration.
+[Private hosting and refresh operations](docs/private-hosting.md) describes authentication, TLS, persistent storage, backups, licensed source adapters, and scheduling. A future refresh must reconcile both the database and snapshot-specific content in the private presentation pack. Only reviewed code is delivered through GitHub; no private source content or public portal deployment is included.
 
 For a concrete deployment package, follow the [private hosting handoff](docs/hosting-handoff.md): an unprivileged system service, a required persistent data mount, and access through the user's restricted SSH key. The package requires an authorized host and a separate durable backup destination; it does not turn this development sandbox into a hosted website.

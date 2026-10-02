@@ -152,3 +152,41 @@ to newer observations. The current release preserves the matched source pair.
 See [review results](review.md) for tested behavior and [private hosting](private-hosting.md)
 for remaining deployment work. Refresh remains `not-connected`; importing or
 reloading a snapshot does not establish a live source connection.
+
+## Browser edition and continued edits
+
+`npm run build:browser` creates `Open-Market-Structure.html` entirely from
+repository code and pinned dependencies. It embeds no private presentation,
+research, source archive, source fingerprint or dataset. The privacy gate
+rebuilds the file in memory and requires exact byte equality; this narrow
+exception permits the bundled SQLite WebAssembly without allowing arbitrary
+bulk or private HTML into Git. Dependency license notices accompany the build.
+
+The browser statically separates the selected local HTML using the same parser
+as the maintenance workflow and checks every module against the bundled reviewed
+code before loading any source presentation. Selected ZIPs are bounded and
+checked for unsafe names, duplicate members, declared sizes and CRC integrity.
+Source-manifest hashes are checked when supplied. Complete archives and the
+original numbered database wrappers are supported. A standalone SQLite must be
+checkpointed in DELETE journal mode; WAL input is rejected because file
+selection cannot validate an adjacent sidecar.
+
+The shared database core performs the same component, typed-observation,
+calculation, date, unit and duplicate checks in Node and SQLite WebAssembly.
+Browser decompression additionally checks zlib checksums and byte budgets.
+HTML components and calculation records must reconcile with the validated
+database. Only reviewed script bytes execute under an explicit hash-based CSP;
+network connections, frames and external assets are disabled.
+
+Loading does not modify the originals or persist their content in browser
+storage. Choosing new files reloads the page and clears the private session.
+Keep originals in private company-approved backup; the application alone cannot
+recover them. PNG/CSV/PDF exports may contain private values and should be saved
+outside code folders. Scheduled refresh and persistent editing remain separate
+work, not features implied by reopening a file.
+
+For visual or calculation changes, edit the maintained browser shell, shared
+analytics and integration hooks, rebuild, and run both legacy and browser-edition
+checks. Changes to literal-separated source modules require corresponding
+reviewed source-format handling; never bypass exact matching to force a new
+source version to load. See [opening and verifying the browser edition](browser-edition.md).

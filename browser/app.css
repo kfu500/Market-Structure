@@ -1,0 +1,21 @@
+[hidden] { display:none !important; }
+body { margin:0; background:#f4f6f8; }
+#browser-loader { max-width:780px; margin:7vh auto; padding:36px; background:#fff; border:1px solid #dbe2e9; border-radius:16px; color:#172d40; font:16px/1.6 system-ui,sans-serif; box-shadow:0 12px 40px #102a4310; }
+#browser-loader h1 { font-size:32px; letter-spacing:-1px; margin:8px 0; }
+#browser-loader .eyebrow { color:#366c77; font-size:12px; font-weight:700; letter-spacing:2px; }
+#browser-loader .intro { color:#526579; margin:0 0 24px; }
+#browser-form label { display:block; font-weight:650; margin:20px 0 5px; }
+#browser-form input { width:100%; box-sizing:border-box; padding:12px; border:1px solid #ccd8e1; border-radius:8px; font:14px system-ui,sans-serif; background:#f8fafc; }
+#browser-loader small { display:block; color:#637387; margin:6px 0; font-size:13px; }
+#browser-loader details { margin-top:20px; }
+#browser-loader summary { cursor:pointer; color:#325c76; }
+#browser-loader button { font:600 15px system-ui,sans-serif; padding:13px 22px; margin-top:24px; border:0; border-radius:7px; background:#174c68; color:white; cursor:pointer; }
+#browser-loader button:disabled { opacity:.55; cursor:wait; }
+#browser-error { padding:14px; background:#fff0ed; border:1px solid #dbab9e; border-radius:8px; color:#823828; }
+#browser-progress { padding:14px; background:#edf4f7; border-radius:8px; }
+#browser-loader .privacy { border-top:1px solid #e3e9ee; padding-top:18px; margin-top:28px; color:#637387; font-size:13px; }
+#browser-tools { display:flex; align-items:center; justify-content:flex-end; gap:10px; padding:8px 22px; background:#edf2f5; font:12px system-ui,sans-serif; }
+#browser-tools button { padding:6px 10px; border:1px solid #becdd6; border-radius:5px; background:white; color:#244c61; cursor:pointer; }
+#browser-export-status { margin-right:auto; }
+@media(max-width:700px) { #browser-loader { margin:16px; padding:24px; } #browser-loader h1 { font-size:27px; } }
+@media print { #browser-tools,#private-reload,#private-quality-toggle { display:none !important; } body { background:white; } }

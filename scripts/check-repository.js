@@ -4,6 +4,7 @@ import path from 'node:path';
 import { REPO_ROOT } from '../src/storage.js';
 import { validateDataset } from '../src/domain.js';
 import { verifyGeneratedCode } from './port-legacy-ui.js';
+import { generateBrowserHtml } from './build-browser.js';
 
 // This gate is defense in depth, not a substitute for reviewing every diff.
 const tracked = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], { cwd: REPO_ROOT }).toString().split('\0').filter(Boolean);
@@ -16,6 +17,15 @@ for (const file of files) {
   const full = path.join(REPO_ROOT, file);
   const info = await lstat(full);
   if (info.isSymbolicLink()) { problems.push(`Symlinks require explicit review and are not allowed: ${file}`); continue; }
+  if (file === 'Open-Market-Structure.html') {
+    // The only bulk artifact allowed is an exact deterministic build from the
+    // reviewed application and pinned dependencies, including SQLite WASM.
+    // Never exempt hand-edited HTML or a private source export on size alone.
+    if (!info.isFile() || (await readFile(full, 'utf8')) !== await generateBrowserHtml()) {
+      problems.push('Browser artifact differs from its code-only build. Run npm run build:browser and review source changes.');
+    }
+    continue;
+  }
   if (info.size > 500_000) { problems.push(`Unexpected embedded/bulk content: ${file}`); continue; }
   if (file.endsWith('.json') && !allowedJson.has(file)) problems.push(`Unexpected JSON data file: ${file}`);
   if (!info.isFile()) continue;
