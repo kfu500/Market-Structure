@@ -1,0 +1,22 @@
+# Append through the host's supported sshd include mechanism after admin review.
+# Do not replace the existing sshd configuration or its administrator access.
+# This account can only forward to the portal. A client must use ssh -N.
+# /etc/ssh/market-structure/authorized_keys must contain only the user's key(s).
+Match User market-structure-forward
+    AuthenticationMethods publickey
+    PubkeyAuthentication yes
+    AuthorizedKeysFile /etc/ssh/market-structure/authorized_keys
+    PasswordAuthentication no
+    KbdInteractiveAuthentication no
+    AllowTcpForwarding local
+    AllowStreamLocalForwarding no
+    PermitOpen 127.0.0.1:3000
+    PermitListen none
+    GatewayPorts no
+    AllowAgentForwarding no
+    X11Forwarding no
+    PermitTTY no
+    PermitTunnel no
+    PermitUserRC no
+    ForceCommand /usr/sbin/nologin
+Match all

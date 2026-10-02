@@ -67,3 +67,26 @@ scheduling, and failure monitoring. See [deployment details](private-hosting.md)
 
 Reusable cloud installation/start instructions were saved to the environment
 draft. Saving the draft did not publish the portal or verify a future restore.
+
+## Private access and recovery preparation
+
+The [hosting handoff](hosting-handoff.md) supplies an unprivileged systemd unit,
+a required persistent-volume mount, and an SSH account restricted to the user's
+key and the portal's loopback port. SSH syntax and effective restrictions were
+checked; systemd unit verification passed with the available Node 24 executable.
+No destination host, authentication identity, or durable storage was provisioned.
+This task had no connected private-preview or ChatGPT Sites deployment tool;
+Sites compatibility requires verification against the runtime requirements in
+the handoff.
+
+`scripts/backup-private.py` creates a private, no-overwrite archive and performs
+bounded hash-verified recovery into a new external directory. Ten synthetic
+backup tests pass, bringing the suite to 72 Node and 22 Python tests; repository
+privacy checks pass. An actual private archive was created and fully restored,
+and the application validated its restored database and matching presentation.
+The archive remains local to the sandbox until transferred to an authorized
+durable destination; local verification does not establish off-machine durability.
+
+A fresh browser capture was emitted directly as an image for layout review.
+Private screenshots, archive manifests, recovery evidence, and original upload
+packages remain outside the repository.

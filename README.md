@@ -74,3 +74,5 @@ Chromium may also need Linux system dependencies. An installed `chromium` is use
 Review code diffs and the private source mapping together when regenerating legacy modules. Private packs are tied to exact code fingerprints; editing modules requires a matching reviewed pack. Keep reports, commentary, real observations, fingerprints, credentials, screenshots, and browser downloads outside every Git checkout. Automated privacy checks supplement manual review.
 
 [Private hosting and refresh operations](docs/private-hosting.md) describes authentication, TLS, persistent storage, backups, licensed source adapters, and scheduling. A future refresh must reconcile both the database and snapshot-specific content in the private presentation pack. No Git push or public publication is part of this migration.
+
+For a concrete deployment package, follow the [private hosting handoff](docs/hosting-handoff.md): an unprivileged system service, a required persistent data mount, and access through the user's restricted SSH key. The package requires an authorized host and a separate durable backup destination; it does not turn this development sandbox into a hosted website.

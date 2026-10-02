@@ -1,0 +1,35 @@
+[Unit]
+Description=Private Market Structure portal
+After=network.target
+RequiresMountsFor=/srv/market-structure/private
+AssertPathIsMountPoint=/srv/market-structure/private
+ConditionPathExists=/srv/market-structure/private/runtime/legacy.json
+
+[Service]
+Type=simple
+User=market-structure
+Group=market-structure
+WorkingDirectory=/srv/market-structure/app
+# Confirm /usr/bin/node is Node 24 on the target host; use an override if needed.
+ExecStart=/usr/bin/node /srv/market-structure/app/src/server.js
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=MARKET_STRUCTURE_DATA_DIR=/srv/market-structure/private/runtime
+UMask=0077
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/srv/market-structure/app /srv/market-structure/private/runtime
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target
