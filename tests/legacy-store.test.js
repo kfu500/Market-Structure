@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { readFile, readdir, realpath, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { deflateSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
@@ -192,7 +192,8 @@ test('standalone preflight rejects a source with committed WAL changes before it
     await assert.rejects(assertStandaloneLegacy(filename), /active journal/);
     await assert.rejects(openLegacyStore(filename), /active journal/);
   } finally { writer.close(); }
-  assert.equal(await assertStandaloneLegacy(filename), filename);
+  // A Windows temporary path may use an 8.3 alias for the same real path.
+  assert.equal(await assertStandaloneLegacy(filename), await realpath(filename));
 });
 
 test('portable platform uses a verified private copy with stable observations and complete cleanup', async t => {

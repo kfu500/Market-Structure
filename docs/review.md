@@ -1,5 +1,52 @@
 # Review: private portal migration
 
+## Source staging and concurrent imports
+
+The CME daily adapter stages replayable private candidates. It validates an
+explicit completed trade date and preliminary/final status, integer units,
+required unique rows, trading-channel totals, category totals, and exchange and
+category futures-plus-options identities. Volume, OI, and reported OI change
+remain separate. An existing PDF or reviewed text extract requires its actual
+retrieval timestamp. HTTP denial, unknown layouts, or failed reconciliation
+reject staging; no alternate download route is attempted.
+
+The legacy release importer now requires the reviewed `--expected-release` to
+replace an existing release and holds an exclusive lock during publication.
+Conflicts leave the existing release intact. A retained lock needs deliberate
+operator recovery; it is never stolen automatically. Original source and prior
+release preservation, database/presentation checks, and atomic activation remain.
+
+Verification in the source-recovery workspace:
+
+- 18 synthetic CME adapter checks passed, covering successful staging, date and
+  layout errors, revisions, idempotency, tampering, private paths, and denied
+  downloads. All 52 Python checks passed.
+- 94 Node checks passed, including all 11 legacy-runtime checks and new stale
+  release, concurrent writer, retained lock, and changed manifest cases.
+- `npm run check` did **not** complete: five suites could not load absent pinned
+  dependencies. Dependency installation was denied by the workspace network.
+  The automated privacy gate therefore remains unverified here; code changes
+  were manually reviewed to keep actual observations and evidence outside Git.
+- Browser checks could not start because Python Playwright was unavailable.
+  No UI/shared-browser source changed; the checked-in browser artifact remains
+  the existing upstream artifact. These checks do not establish visual quality
+  or a live private deployment.
+
+GitHub's configured Linux CI subsequently passed the full `npm run check`
+(145 Node tests, 52 Python tests, and the privacy gate), eight synthetic browser
+scenarios, and the synthetic chart export checks. The Windows run identified
+two existing fixture portability issues: a SQLite writer remained open when
+cleanup tried to remove it, and a canonical path was compared with its 8.3
+alias. These tests now close the writer before cleanup and compare resolved
+paths. The WAL rejection assertions remain in place; no production validation
+was relaxed. Confirm the latest Windows CI result on the pull request.
+
+This work supplies a validated source candidate boundary and guarded runtime
+activation, not a source-to-master publication adapter or a running schedule.
+Canonical master retrieval/import/build and private hosting still need a
+verified end-to-end execution. Earlier verification below describes the prior
+migration, not a fresh verification of inaccessible private files.
+
 This change migrates the supplied portal into a maintainable application with
 external private storage. The original company workbenches, research, historical
 series, consensus/scenario controls, advanced charts, and prediction tools remain

@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { importLegacy, syncDirectory } from '../scripts/import-legacy.js';
+import { withReleaseGuard } from '../src/release-lock.js';
 import { openLegacyRuntime, validatePresentation, sha256, checkedChild } from '../src/legacy-runtime.js';
 import { REPO_ROOT } from '../src/storage.js';
 import { createPortalServer } from '../src/server.js';
@@ -40,8 +41,51 @@ test('legacy import preserves source bytes, activates reconciled data and retain
   assert.deepEqual(first.asset('module-000.js'), f.code);
   assert.equal(first.asset('../src/server.js'), undefined);
   first.close();
-  await importLegacy(f);
+  await importLegacy({ ...f, expectedRelease: result.release });
   assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 2);
+});
+
+test('stale or omitted expected releases cannot replace an existing private import', async t => {
+  const f = await fixture(t);
+  const first = await importLegacy(f);
+  const before = await readFile(path.join(f.dataDir, 'legacy.json'));
+  await assert.rejects(importLegacy(f), /expected release/);
+  await assert.rejects(importLegacy({ ...f, expectedRelease: 'synthetic-stale-release' }), /release changed/);
+  assert.deepEqual(await readFile(path.join(f.dataDir, 'legacy.json')), before);
+  assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 1);
+  const next = await importLegacy({ ...f, expectedRelease: first.release });
+  assert.notEqual(next.release, first.release);
+});
+
+test('concurrent imports cannot both replace the same reviewed release', async t => {
+  const f = await fixture(t);
+  const first = await importLegacy(f);
+  const outcomes = await Promise.allSettled([
+    importLegacy({ ...f, expectedRelease: first.release }),
+    importLegacy({ ...f, expectedRelease: first.release }),
+  ]);
+  assert.equal(outcomes.filter(x => x.status === 'fulfilled').length, 1);
+  assert.equal(outcomes.filter(x => x.status === 'rejected').length, 1);
+  assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 2);
+  assert.equal((await readdir(f.dataDir)).includes('.legacy-import.lock'), false);
+});
+
+test('a retained lock is never stolen and a changed manifest is detected before activation', async t => {
+  const f = await fixture(t);
+  const first = await importLegacy(f);
+  const lock = path.join(f.dataDir, '.legacy-import.lock');
+  await writeFile(lock, 'Synthetic interrupted importer');
+  await assert.rejects(importLegacy({ ...f, expectedRelease: first.release }), /holds the private release lock/);
+  assert.equal(await readFile(lock, 'utf8'), 'Synthetic interrupted importer');
+  await rm(lock);
+  const manifestPath = path.join(f.dataDir, 'legacy.json');
+  const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  await assert.rejects(withReleaseGuard(f.dataDir, first.release, async assertUnchanged => {
+    await writeFile(manifestPath, JSON.stringify({ ...manifest, release: 'synthetic-external-writer' }));
+    await assertUnchanged();
+  }), /changed during import/);
+  assert.equal(JSON.parse(await readFile(manifestPath, 'utf8')).release, 'synthetic-external-writer');
+  assert.equal((await readdir(f.dataDir)).includes('.legacy-import.lock'), false);
 });
 
 test('legacy import rejects an active source WAL and leaves the previous manifest intact', async t => {
@@ -49,12 +93,16 @@ test('legacy import rejects an active source WAL and leaves the previous manifes
   await importLegacy(f);
   const before = await readFile(path.join(f.dataDir, 'legacy.json'));
   const db = new DatabaseSync(f.database);
-  t.after(() => db.close());
-  db.exec('PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;');
-  db.prepare('UPDATE sources SET document=?').run('Synthetic committed WAL revision');
-  await assert.rejects(importLegacy(f), /journal/);
-  assert.deepEqual(await readFile(path.join(f.dataDir, 'legacy.json')), before);
-  assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 1);
+  try {
+    db.exec('PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;');
+    db.prepare('UPDATE sources SET document=?').run('Synthetic committed WAL revision');
+    await assert.rejects(importLegacy(f), /journal/);
+    assert.deepEqual(await readFile(path.join(f.dataDir, 'legacy.json')), before);
+    assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 1);
+  } finally {
+    // Windows cannot remove the fixture while this SQLite writer is open.
+    db.close();
+  }
 });
 
 test('runtime verifies the complete imported database digest, including unindexed metadata', async t => {

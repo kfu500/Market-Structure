@@ -96,6 +96,13 @@ outputs outside every Git checkout.
    verify source stability and presentation/code integrity, and atomically
    replace the manifest. Original inputs and previous releases are retained.
    Do not edit active release files in place; import a new release.
+   For a replacement, supply `--expected-release CURRENT_RELEASE`, matching the
+   exact `release` in the current private `legacy.json`. The importer takes an
+   exclusive lock and checks the identifier before and immediately before
+   activation. A missing/stale identifier or another writer rejects the import.
+   Initial imports omit this flag. A crash can leave `.legacy-import.lock`;
+   an operator must verify that no importer is running before removing it.
+   Do not automatically steal a lock or retry with an unreviewed release.
 4. Run `npm run check`, `npm run test:browser`, and the private runtime check:
 
    ```sh
@@ -152,6 +159,54 @@ to newer observations. The current release preserves the matched source pair.
 See [review results](review.md) for tested behavior and [private hosting](private-hosting.md)
 for remaining deployment work. Refresh remains `not-connected`; importing or
 reloading a snapshot does not establish a live source connection.
+
+## CME daily candidates
+
+The first source adapter is `scripts/stage-cme.py`. It uses Python 3.12+ and
+`pdftotext` for PDF inputs; text inputs use the Python standard library. Run on
+a Linux host with authorized source access. Create a private staging directory
+outside every Git checkout, then choose one source mode:
+
+```sh
+python3 scripts/stage-cme.py --fetch \
+  --expected-trade-date YYYY-MM-DD \
+  --data-dir /absolute/private/candidates
+
+python3 scripts/stage-cme.py \
+  --input-pdf /absolute/private/sources/section01.pdf \
+  --expected-trade-date YYYY-MM-DD \
+  --retrieved-at ACTUAL_ISO_TIMESTAMP_WITH_TIMEZONE \
+  --data-dir /absolute/private/candidates
+```
+
+Use `--input-text /absolute/private/sources/reviewed-section01.txt` only for an
+unaltered reviewed text extraction from the official bulletin. The candidate
+then explicitly lacks original PDF bytes and a PDF digest; its evidence digest
+applies only to the retained text. Previously retrieved inputs require their
+actual retrieval timestamp. Source dates and preliminary/final status come from
+the bulletin, never the filename or retrieval time.
+
+The adapter accepts the existing Section 01 definition, retains `COMM & ALT
+INVST` unchanged, and records volume, open interest, and reported OI change in
+contracts for exchange and product scopes. All required rows must be unique.
+Channel volumes, category totals, and futures-plus-options identities must
+reconcile. Current/future sessions, unexpected dates, unknown numeric layouts,
+new categories, and incomplete reports are rejected. A single report does not
+supply ADV, MTD, or a comparable year-over-year series.
+
+Candidates preserve exact input bytes, hashes, source URL, extraction location,
+raw units, retrieval time, status, and check results in immutable directories.
+Identical evidence is idempotent; changed evidence for the same trade date is
+retained separately for revision/conflict review. HTTP denial stops retrieval
+without retries or an alternate endpoint. Originals and staged evidence must
+remain outside Git, logs intended for publication, and public CI artifacts.
+
+Staging does not activate a release. Publication still requires the current
+master database, supported source mapping and revision review, and a coherent
+presentation pack. The canonical master import/build workflow must run before
+private runtime activation. Do not insert these candidates into the separate
+synthetic monthly format or directly modify an active database. Scheduling
+should wait for an end-to-end validated source-to-master-to-portal cycle.
 
 ## Browser edition and continued edits
 

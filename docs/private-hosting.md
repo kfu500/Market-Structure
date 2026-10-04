@@ -76,8 +76,11 @@ document store and appropriate distribution rights.
 
 ## Scheduled refresh remains to be implemented
 
-There is no provider adapter or scheduled job. Import and browser reload use
-stored snapshots, and the interface correctly reports `not-connected`.
+The CME daily-bulletin adapter can validate and stage private source candidates;
+see [source migration](source-migration.md#cme-daily-candidates). It does not yet
+publish through the canonical master workflow. No scheduled refresh job is
+configured. Import and browser reload use stored snapshots, and the interface
+correctly reports `not-connected`.
 
 - Select supported, licensed source APIs or private feeds for each metric.
   Confirm definitions, units, publication times, revision policy, coverage,
@@ -98,8 +101,11 @@ stored snapshots, and the interface correctly reports `not-connected`.
   handling explicitly. Reject bad candidates and keep the last good release.
 - Activate full releases with `data:import-legacy` and a matching reviewed
   presentation pack; use `data:import` only for normalized monthly snapshots.
-  Serialize writers, preserve backups, and monitor disk use. Atomic activation
-  protects readers from partial imports but does not schedule or lock jobs.
+  Supply the exact reviewed `--expected-release` for replacements. The legacy
+  importer serializes activation with an exclusive lock and rejects conflicts;
+  it never steals a retained lock. Preserve backups and monitor disk use.
+  Atomic activation protects readers from partial imports but does not schedule
+  jobs or configure source access.
 - Choose cadence and timezone from actual provider publication schedules.
   Add timeouts, bounded retries, alerts, holiday/release expectations, and
   source-specific stale thresholds. Keep private values out of notifications.
