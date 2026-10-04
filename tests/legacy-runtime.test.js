@@ -93,12 +93,16 @@ test('legacy import rejects an active source WAL and leaves the previous manifes
   await importLegacy(f);
   const before = await readFile(path.join(f.dataDir, 'legacy.json'));
   const db = new DatabaseSync(f.database);
-  t.after(() => db.close());
-  db.exec('PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;');
-  db.prepare('UPDATE sources SET document=?').run('Synthetic committed WAL revision');
-  await assert.rejects(importLegacy(f), /journal/);
-  assert.deepEqual(await readFile(path.join(f.dataDir, 'legacy.json')), before);
-  assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 1);
+  try {
+    db.exec('PRAGMA journal_mode=WAL; PRAGMA wal_autocheckpoint=0;');
+    db.prepare('UPDATE sources SET document=?').run('Synthetic committed WAL revision');
+    await assert.rejects(importLegacy(f), /journal/);
+    assert.deepEqual(await readFile(path.join(f.dataDir, 'legacy.json')), before);
+    assert.equal((await readdir(path.join(f.dataDir, 'releases'))).length, 1);
+  } finally {
+    // Windows cannot remove the fixture while this SQLite writer is open.
+    db.close();
+  }
 });
 
 test('runtime verifies the complete imported database digest, including unindexed metadata', async t => {

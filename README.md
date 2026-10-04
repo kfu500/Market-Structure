@@ -78,7 +78,6 @@ This is a staging adapter: it does **not** update the master database, activate
 the portal, or schedule a refresh. See the commands and remaining publication
 boundary in [source migration](docs/source-migration.md#cme-daily-candidates).
 
-
 ## Verify
 
 ```sh

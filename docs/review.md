@@ -32,6 +32,15 @@ Verification in the source-recovery workspace:
   the existing upstream artifact. These checks do not establish visual quality
   or a live private deployment.
 
+GitHub's configured Linux CI subsequently passed the full `npm run check`
+(145 Node tests, 52 Python tests, and the privacy gate), eight synthetic browser
+scenarios, and the synthetic chart export checks. The Windows run identified
+two existing fixture portability issues: a SQLite writer remained open when
+cleanup tried to remove it, and a canonical path was compared with its 8.3
+alias. These tests now close the writer before cleanup and compare resolved
+paths. The WAL rejection assertions remain in place; no production validation
+was relaxed. Confirm the latest Windows CI result on the pull request.
+
 This work supplies a validated source candidate boundary and guarded runtime
 activation, not a source-to-master publication adapter or a running schedule.
 Canonical master retrieval/import/build and private hosting still need a
